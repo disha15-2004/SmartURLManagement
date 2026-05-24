@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+require("dotenv").config();
 
 const urlRoutes = require("./routes/urlRoutes");
 const authRoutes = require("./routes/authRoutes");
@@ -17,11 +18,8 @@ app.use((req, res, next) => {
 });
 
 // ✅ MongoDB Connection
-const MONGO_URI =
-  "mongodb+srv://dishaskanavi_db_user:Jrbezkk69J4s9LbI@cluster0.gvvm6pb.mongodb.net/?appName=Cluster";
-
 mongoose
-  .connect(MONGO_URI)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("🚀 MongoDB Connected Successfully"))
   .catch((err) => {
     console.error("❌ MongoDB Connection Error:");
